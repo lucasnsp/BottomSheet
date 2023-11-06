@@ -8,12 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var presentation: Bool = false
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Button("Exibir tela 2") {
+                presentation.toggle()
+            }
+            .sheet(isPresented: $presentation) {
+                ZStack {
+                    Color.orange
+                        .ignoresSafeArea()
+                    Text("Oiii mundo")
+                        .presentationDetents([.fraction(0.6)])
+                        .presentationDragIndicator(.visible)
+                        .presentationCornerRadius(30)
+                        
+                }
+                
+            }
         }
         .padding()
     }
